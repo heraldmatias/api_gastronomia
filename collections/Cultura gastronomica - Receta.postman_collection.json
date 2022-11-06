@@ -1,0 +1,1118 @@
+{
+	"info": {
+		"_postman_id": "1675a0a5-faa0-4dd9-a678-d5d6abdfda29",
+		"name": "Cultura gastronomica - Receta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23045219"
+	},
+	"item": [
+		{
+			"name": "Agregar una receta a una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd2317f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd2317f"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 Agregar una receta a una cultura gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1000,\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\",\n    \"receta\": {\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar una receta que no existe a una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con id b39d8319-b331-4cd9-adc9-6e4f6bd23179 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/c3977261-44bc-4025-ae25-b8149ef2eed6/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd23179",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"c3977261-44bc-4025-ae25-b8149ef2eed6",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd23179"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Agregar una receta a una cultura gastronomica que no existe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con id b39d8319-b331-4cd9-adc9-6e4f6bd23179 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar una receta a una cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id c3977261-44bc-4025-ae25-b8149ef2eed0 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/c3977261-44bc-4025-ae25-b8149ef2eed0/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd2317f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"c3977261-44bc-4025-ae25-b8149ef2eed0",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd2317f"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Agregar una receta a una cultura gastronomica que no existe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronomica con id c3977261-44bc-4025-ae25-b8149ef2eed0 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd2317f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd2317f"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Obtener una receta de una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta de una cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The artwork with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd23179",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd23179"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Obtener una receta de una cultura gastronomica que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id_5}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id_5}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con id b39d8319-b331-4cd9-adc9-6e4f6bd23179 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta de una cultura gastronomica al cual no esta asociado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con id 1bbb0d49-36cb-4e27-b62e-103616dc3f8a no esta asociada a la cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e1e83fe93\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/1bbb0d49-36cb-4e27-b62e-103616dc3f8a",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"1bbb0d49-36cb-4e27-b62e-103616dc3f8a"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "412 Obtener una receta de una cultura gastronomica al cual no esta asociado",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id_5}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id_5}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"La receta con id 1bbb0d49-36cb-4e27-b62e-103616dc3f8a no esta asociada a la cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e1e83fe93\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta que no existe de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The museum with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d32809cb-b691-4727-b7b1-d10e1e83fe93/recetas/1bbb0d49-36cb-4e27-b62e-103616dc3f8a",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d32809cb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"1bbb0d49-36cb-4e27-b62e-103616dc3f8a"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Obtener una receta que no existe de una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id_8}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_8}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronomica con id d32809cb-b691-4727-b7b1-d10e1e83fe93 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Obtener todas las recetas de una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n},\n{\n    \"id\": \"48a93390-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Arepas\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas de una cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id d3280dcb-b690-4727-b7b1-d10e1e83fe93 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b690-4727-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd2317f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b690-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd2317f"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Obtener todas las recetas de una cultura gastronomica que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/899/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"899",
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronomica con id d3280dcb-b690-4727-b7b1-d10e1e83fe93 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de recetas para la cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"1bbb0d49-36cb-4e27-b62e-103616dc3f8a\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Actualizar la lista de recetas para la cultura gastronomica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"2\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"d3280dcb-b691-4727-b7b1-d10e1e83fe93\",\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\",\n    \"recetas\": [\n        {\n            \"id\": \"1bbb0d49-36cb-4e27-b62e-103616dc3f8a\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de recetas en la cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e4e83fe93 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"2\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e4e83fe93/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e4e83fe93",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Datos no encontrados",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"200000\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e4e83fe93 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de recetas que no existen en la cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con id 1bbb0d49-36cb-4e27-b62e-103616dc3f8c no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"1bbb0d49-36cb-4e27-b62e-103616dc3f8c\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Datos no encontrados",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"1bbb0d49-36cb-4e27-b62e-103616dc3f8q\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con id 1bbb0d49-36cb-4e27-b62e-103616dc3f8c no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta de la cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/1bbb0d49-36cb-4e27-b62e-103616dc3f8a",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"1bbb0d49-36cb-4e27-b62e-103616dc3f8a"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 Dato eliminado",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta de una cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id d3280dcb-b691-4797-b7b1-d10e1e83fe93 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4797-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd2317f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4797-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd2317f"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Dato no encontrado",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id_3}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id_3}}",
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronomica con id d3280dcb-b691-4797-b7b1-d10e1e83fe93 no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta que no existe de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con id b39d8319-b331-4cd9-adc9-6e4f6bd23170 no existe\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/b39d8319-b331-4cd9-adc9-6e4f6bd23170",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"b39d8319-b331-4cd9-adc9-6e4f6bd23170"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Borrar una receta que no existe de una cultura gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/receta/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"receta",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "La receta con id b39d8319-b331-4cd9-adc9-6e4f6bd23170 no existe"
+				}
+			]
+		},
+		{
+			"name": "Borrar la receta que no esta asociada a la cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con id 4d738a98-d292-4425-86f2-6cdb5b7c1bc1 no esta asociada a la cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e1e83fe93\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/d3280dcb-b691-4727-b7b1-d10e1e83fe93/recetas/4d738a98-d292-4425-86f2-6cdb5b7c1bc1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"d3280dcb-b691-4727-b7b1-d10e1e83fe93",
+						"recetas",
+						"4d738a98-d292-4425-86f2-6cdb5b7c1bc1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "412 Borrar el restaurante que no esta asociada a la cultura gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con id 4d738a98-d292-4425-86f2-6cdb5b7c1bc1 no esta asociada a la cultura gastronomica con id d3280dcb-b691-4727-b7b1-d10e1e83fe93\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "{{cultura_id}}",
+			"value": "8e8baefa-682f-4ad2-a1ca-9196821e5656",
+			"type": "string"
+		},
+		{
+			"key": "{{receta_id}}",
+			"value": "decdbd97-8cb9-4b63-8b51-8368a78e80fd",
+			"type": "string"
+		}
+	]
+}

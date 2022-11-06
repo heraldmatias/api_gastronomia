@@ -1,0 +1,668 @@
+{
+	"info": {
+		"_postman_id": "c5388398-d5bf-4527-96e9-bfd7be624b22",
+		"name": "Receta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23045219"
+	},
+	"item": [
+		{
+			"name": "Crear una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"receta_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 Receta creada",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear una receta con datos invalidos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "414 Datos invalidos",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"\",\n    \"descripcion\": \"\",\n    \"foto\": \"\",\n    \"preparacion\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/paises",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises"
+							]
+						}
+					},
+					"status": "Request-URI Too Long",
+					"code": 414,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"foto should not be empty\",\n        \"foto must be an URL address\",\n        \"video should not be empty\",\n        \"video must be an URL address\",\n        \"preparacion should not be empty\",\n        \"preparacion must be a string\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of recetas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Listado",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n},\n{\n    \"id\": \"48a93390-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Arepas\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas sin datos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Datos no encontrados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"No se encuentra ninguna de recetas\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/d29d089a-63c0-4715-b753-e0419bc36ab5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"d29d089a-63c0-4715-b753-e0419bc36ab5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Receta encontrada",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho.\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"Receta no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Receta no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La receta solicitada no se encuentra\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho. (new description)\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/d29d089a-63c0-4715-b753-e0419bc36ab5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"d29d089a-63c0-4715-b753-e0419bc36ab5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Receta actualizada",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho. (new description)\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"Receta no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Sancocho de gallina\",\n    \"descripcion\": \"En Colombia, en general, el sancocho corresponde a un caldo espeso o sopa a base de papa o yuca, al cual se agrega alguna carne, (por ejemplo pollo, gallina, pescado, res, etc.), carne que, según se seleccione, le da el nombre final al sancocho. (new description)\",\n    \"foto\": \"https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80\",\n    \"video\": \"https://www.youtube.com/watch?v=ZABSCmiyJVA\",\n    \"preparacion\": \"Se pone a hervir el agua con el pollo o la gallina se le agrega el plátano y la yuca y el cubito de gallina cuando ya este el pollo se le agrega la papa y los demás ingredientes. Todos los ingredientes deben estar unos 20 minutos hiriviendo. El Sancocho es un plato fácil de hacer, vas a tardar más tiempo en recopilar todos los ingredientes que en hacerlo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 No se encuentra la receta",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"WAKANDA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas/0000-0000-0000-0000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"0000-0000-0000-0000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"No se ha podido actualizar la receta solicitada\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/d29d089a-63c0-4715-b753-e0419bc36ab5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"d29d089a-63c0-4715-b753-e0419bc36ab5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 Receta eliminada",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta que no se encuentra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"Receta no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Receta no encontrada",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La receta solicitada no se puede eliminar, ya que no existe\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

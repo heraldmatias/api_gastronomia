@@ -1,0 +1,678 @@
+{
+	"info": {
+		"_postman_id": "9e3fea30-3e8c-44bc-9e6c-9de0553e8682",
+		"name": "Cultura Gastronomica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23045940"
+	},
+	"item": [
+		{
+			"name": "Crear una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"pais_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 Cultura gastronomica creada",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear una cultura gastronomica con campos invalidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"   pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"nombre should not be empty\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "414 Datos invalidos",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"\",\n    \"descripcion\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas"
+							]
+						}
+					},
+					"status": "Request-URI Too Long",
+					"code": 414,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 414,\n    \"errors\": {\n        \"message\": \"No puede contener campos vacios\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las culturas gastronomicas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of countries > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Listado",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n   {\n       \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n       \"nombre\": \"Peruana\",\n        \"descripcion\": \"La gastronomía peruana es el conjunto de platillos y técnicas culinarias del Perú que forman parte de las tradiciones y vida común de sus habitantes, resultado de la fusión de la tradición culinaria del antiguo Perú con la gastronomía europea y otras. En 2011, la gastronomía peruana fue reconocida como «Patrimonio Cultural de las Américas para el Mundo» por parte de la Organización de los Estados Americanos\"\n   },\n   {\n       \"id\": \"13f05d0e-1375-11ed-861i-0242ac1200902\",\n       \"nombre\": \"Colombiana\",\n        \"descripcion\": \"Son tradicionales platillos el pastel de garbanzo, el arroz con pollo, el arroz con carne, el arroz de arveja y el arroz de yuca. También lo es el mute, sopa preparada con carne de cerdo, maíz, papa y garbanzos, servida con arroz y pasteles de garbanzo.\"\n   },\n    {\n       \"id\": \"14405d0e-1275-11ed-861d-0242ac1203402\",\n       \"nombre\": \"Francesa\",\n        \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad. Es el fruto de una herencia secular y también está en constante evolución gracias a sus profesionales que continúan revisitando sus clásicos para siempre sorprendernos y satisfacernos.\"\n   },\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las culturas gastronomicas sin datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of countries > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Listado",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"No se encuentra ninguna cultura gastronomica registrada en la base de datos.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una cultura",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Obtener una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas/{{cultura_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas",
+								"{{cultura_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Peruana\",\n    \"descripcion\": \"La gastronomía peruana es el conjunto de platillos y técnicas culinarias del Perú que forman parte de las tradiciones y vida común de sus habitantes, resultado de la fusión de la tradición culinaria del antiguo Perú con la gastronomía europea y otras. En 2011, la gastronomía peruana fue reconocida como «Patrimonio Cultural de las Américas para el Mundo» por parte de la Organización de los Estados Americanos\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una cultura que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El pais con el id dado no ha sido encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Cultura gastronomica no encontrada",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La cultura gastronomica solicitado no existe\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una cultura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Peruana\",\n    \"descripcion\": \"La cocina Peruana rica en su variedad\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Cultura gastronomica actualizada",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultra_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultra_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una cultura que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Francesa\",\n    \"descripcion\": \"La gastronomía francesa es conocida en todo el mundo por su calidad y diversidad.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Cultura gastronomica no encontrada",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"WAKANDA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas/{{cultura_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas",
+								"{{cultura_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La cultura gastronomica solicitado no se puede actualizar ya que no existe.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un cultura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 Cultura gastronomica eliminada",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La cultura gastronomica solicitado no se encuentra\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un cultura gastronomica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con el id dado no ha sido encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404 Cultura gastronomica no encontrada",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-grastronomicas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-grastronomicas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"errors\": {\n        \"message\": \"La cultura gastronomica solicitado no se encuentra\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "cultura_id",
+			"value": "ff5396e9-3527-4b71-ba7e-106cb3b4abbf",
+			"type": "string"
+		}
+	]
+}
